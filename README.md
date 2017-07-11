@@ -1,7 +1,7 @@
 Google Translate FREE in golang
 
 Note: This is not normal commercial Translator API
-profided by Google.
+provided by Google.
 
 Example usage:
 
