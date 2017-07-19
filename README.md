@@ -3,6 +3,9 @@ Google Translate FREE in golang
 Note: This is not normal commercial Translator API
 provided by Google.
 
+Install:<br>
+go get github.com/bas24/googletranslatefree
+
 Example usage:
 
 ```go
