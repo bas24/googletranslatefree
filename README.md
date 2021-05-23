@@ -13,7 +13,7 @@ Example usage:
 
 	import (
 		"fmt"
-		gt "github.com/bas24/translategooglefree"
+		gt "github.com/bas24/googletranslatefree"
 	)
 
 	func main(){
@@ -24,4 +24,4 @@ Example usage:
 		fmt.Println(result)
 		// Output: "Hola, Mundo!"
 	}
-``` 
+```
