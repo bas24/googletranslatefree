@@ -6,43 +6,21 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"strings"
-
-	"github.com/robertkrimen/otto"
 )
 
 // javascript "encodeURI()"
 // so we embed js to our golang programm
-func encodeURI(s string) (string, error) {
-	eUri := `eUri = encodeURI(sourceText);`
-	vm := otto.New()
-	err := vm.Set("sourceText", s)
-	if err != nil {
-		return "err", errors.New("Error setting js variable")
-	}
-	_, err = vm.Run(eUri)
-	if err != nil {
-		return "err", errors.New("Error executing jscript")
-	}
-	val, err := vm.Get("eUri")
-	if err != nil {
-		return "err", errors.New("Error getting variable value from js")
-	}
-	v, err := val.ToString()
-	if err != nil {
-		return "err", errors.New("Error converting js var to string")
-	}
-	return v, nil
+func encodeURI(s string) string {
+	return url.QueryEscape(s)
 }
 
 func Translate(source, sourceLang, targetLang string) (string, error) {
 	var text []string
 	var result []interface{}
 
-	encodedSource, err := encodeURI(source)
-	if err != nil {
-		return "err", err
-	}
+	encodedSource := encodeURI(source)
 	url := "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" +
 		sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodedSource
 
